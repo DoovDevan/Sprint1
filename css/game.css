@@ -1,0 +1,17 @@
+body {
+    color: skyblue;
+    text-align: center;
+}
+
+td {
+    height: 30px;
+    width: 30px;
+    color: grey;
+    border: skyblue 2px solid;
+   
+}
+
+table {
+    border: steelblue 5px solid;
+    margin: auto;
+}
