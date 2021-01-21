@@ -10,14 +10,26 @@
 
 <body onload="init()">
     <h1>Welcome to MineSweeper</h2>
+        <div class="Buttons">
+            <button onclick="levelEasy()" class="button1">Easy</button>
+            <button onclick="levelNormal()" class="button1">Normal</button>
+            <button onclick="levelExpert()" class="button3">Expert</button>
+        </div>
+        <div class="emoji">😀</div>
 
         <div class="board-container">
+            <div>
+                <h2>Timer: <label id="minutes">00</label>:<label id="seconds">00</label> </h2>
+                <h4 class="lives">currect lives: 3 </h4>
+            </div>
 
             <table>
                 <tbody class="board"></tbody>
             </table>
 
         </div>
+
+        <button class="restart" onclick="init()">Restart</button>
 
 
         <script src="js/utils.js"></script>
