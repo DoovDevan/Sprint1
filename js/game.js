@@ -66,7 +66,7 @@ function renderBoard(board) {
         strHTML += '<tr>';
         for (var j = 0; j < board.length; j++) {
             var cell = board[i][j];
-            // var tdId = `cell-${i}-${j}`;
+            var tdId = `cell-${i}-${j}`;
             strHTML += `<td class="cell" onclick="cellClicked(this, ${i}, ${j}) "oncontextmenu="cellMarked(this, ${i}, ${j});return false;">`
 
             strHTML += '</td>'
@@ -126,6 +126,11 @@ function cellClicked(elCell, i, j) {
         counterClick++
         gInterval = setInterval(setTime, 1000)
     }
+    //   if (counterClick === 2) {  // first click never bomb - broken.
+    //     spawnMinesInRandom(gBoard)
+    //     setMinesNegsCount(gBoard)
+    //     counterClick++
+    // }
     var cell = gBoard[i][j];
     if (cell.isMarked) return
     if (cell.isShown === false) {
@@ -141,11 +146,10 @@ function cellClicked(elCell, i, j) {
         elCell.innerText = cell.gameElement //Render Bomb in DOM
         cell.isShown = true
         gLives--
-        console.log(gLives, 'livessss')
+        console.log(gLives, 'curr life')
         checkGameOver(i, j)
     }
-
-
+    console.log(counterClick)
 }
 
 
@@ -187,11 +191,13 @@ function checkGameOver(i, j) {
     var elLives = document.querySelector('.lives')
     elLives.innerText = gLives
 
-    if (gGame.shownCount === correctCount && gGame.markedCount === gLevel.mines) {
+    if (gGame.shownCount === correctCount && gGame.markedCount === gLevel.mines) {//win situation
+        gGame.isOn = false
         console.log('game is over')
         clearInterval(gInterval)
         elEmoji.innerText = '😎'
-    } else if (gLives === 0) {
+
+    } else if (gLives === 0) { //lose situation
         gGame.isOn = false
         clearInterval(gInterval)
         elEmoji.innerText = '🤕'
@@ -232,8 +238,9 @@ function levelExpert() {
 }
 //TODO BUGS!!!
 
-// FIX FLAG ON NUMBERS AFTER WIN
-//ADD LEVELS!
+// FIX FLAG ON NUMBERS AFTER WIN  //patch 1.1 Shabat- fixed 
+//ADD LEVELS! // path 1.1 Shabat - fixed!
 //FIRST CLICK NEVER BOMB!
+// Reveal all the bomb when click! - id from chess game? 
 
 //NEVER GIVE UP!
